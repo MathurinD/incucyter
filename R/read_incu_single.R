@@ -1,4 +1,4 @@
-read_incu_single <- function(file, delay, per_image) {
+read_incu_single <- function(file, delay, per_image,decimal=",") {
 
   meta <- read_delim(file, n_max = 6, delim = ": ", col_types = "cc",
                      col_names = c("key", "value"), trim_ws = T, na = "") %>%
@@ -7,7 +7,7 @@ read_incu_single <- function(file, delay, per_image) {
     as_data_frame %>%
     setNames(make.names(names(.)) %>% str_replace_all("\\.", "_"))
 
-  result <- read_tsv(file, skip = 7, locale = locale(decimal_mark = ",")) %>%
+  result <- read_tsv(file, skip = 7, locale = locale(decimal_mark = decimal)) %>%
     setNames(gsub(": ", "", names(.)) %>% gsub(" ", "_", .)) %>%
     gather(Well, Value, -Date_Time, -Elapsed) %>%
     mutate(Elapsed = Elapsed + delay)

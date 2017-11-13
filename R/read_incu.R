@@ -13,10 +13,10 @@
 #' read_incu(file = system.file("extdata", "sample_data_GO_Confluence_percent.txt", package = "incucyter"),
 #' annotation = system.file("extdata", "sample_data_annotation.tsv", package = "incucyter"))
 #' @export
-read_incu <- function(file, annotation = NULL, delay = 0, per_image = T) {
+read_incu <- function(file, annotation = NULL, delay = 0, per_image = T, decimal=",") {
 
   result <- file %>%
-    lapply(read_incu_single, delay = delay, per_image = per_image) %>%
+    lapply(read_incu_single, delay = delay, per_image = per_image, decimal = decimal) %>%
     set_names(file %>% basename) %>%
     bind_rows(.id = "File")
 
