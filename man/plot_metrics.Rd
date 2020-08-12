@@ -4,9 +4,16 @@
 \alias{plot_metrics}
 \title{plot metrics, summarise by condition}
 \usage{
-plot_metrics(incu_tbl, analysis_job = unique(incu_tbl$Analysis_Job),
-  metric = unique(incu_tbl$Metric), color = "Treatment", linetype = NULL,
-  label = NULL, alpha = 0.5, summarise = T)
+plot_metrics(
+  incu_tbl,
+  analysis_job = unique(incu_tbl$Analysis_Job),
+  metric = unique(incu_tbl$Metric),
+  color = "Treatment",
+  linetype = NULL,
+  label = NULL,
+  alpha = 0.5,
+  summarise = T
+)
 }
 \arguments{
 \item{incu_tbl}{A tibble generated with \code{\link{read_incu}}}
@@ -34,4 +41,3 @@ annotation = system.file("extdata", "sample_data_annotation.tsv",
 package = "incucyter"))
 plot_metrics(incu_tbl, color = c("Treatment"), label = c("Treatment"), summarise = T)
 }
-

@@ -22,4 +22,3 @@ incu_tbl <- read_incu(file = system.file("extdata", "sample_data_GO_Confluence_p
 annotation = system.file("extdata", "sample_data_annotation.tsv", package = "incucyter"))
 norm_incu(incu_tbl, 72)
 }
-

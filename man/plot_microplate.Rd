@@ -4,9 +4,16 @@
 \alias{plot_microplate}
 \title{plot microplate graphs}
 \usage{
-plot_microplate(incu_tbl, analysis_job = incu_tbl$Analysis_Job[1],
-  metric = incu_tbl$Metric[1], color = "Treatment", label = NULL,
-  summarise = F)
+plot_microplate(
+  incu_tbl,
+  analysis_job = incu_tbl$Analysis_Job[1],
+  metric = incu_tbl$Metric[1],
+  color = "Treatment",
+  label = NULL,
+  plot_name = "",
+  summarise = F,
+  log = FALSE
+)
 }
 \arguments{
 \item{incu_tbl}{A tibble generated with \code{\link{read_incu}}}
@@ -32,4 +39,3 @@ incu_tbl <- read_incu(file = system.file("extdata", "sample_data_GO_Confluence_p
                       annotation = system.file("extdata", "sample_data_annotation.tsv", package = "incucyter"))
 plot_microplate(incu_tbl, metric = "Green_Confluence", color = c("Treatment"), label = c("Treatment"), summarise = T)
 }
-

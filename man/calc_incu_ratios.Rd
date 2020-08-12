@@ -24,4 +24,3 @@ annotation = system.file("extdata", "sample_data_annotation.tsv",
                           package = "incucyter"))
 ratios_tbl <- calc_incu_ratios(incu_tbl)
 }
-
