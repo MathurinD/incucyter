@@ -33,6 +33,10 @@ read_incu_single <- function(file, delay, per_image,decimal=",") {
     rename(Description = Metric) %>%
     left_join(metrics, by = "Description")
 
+  if (any(result$Value > 100, na.rm=TRUE)) {
+    stop(paste0("Wrong decimal value for ", file, " (unbound Values detected)"))
+  }
+
   return(result)
 
 }

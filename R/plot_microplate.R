@@ -21,7 +21,9 @@ plot_microplate <- function(incu_tbl,
                             metric = incu_tbl$Metric[1],
                             color = "Treatment",
                             label = NULL,
-                            summarise = F) {
+                            plot_name = "",
+                            summarise = F,
+                            log=FALSE) {
 
   color_key_name <- paste(color, collapse = "+")
 
@@ -29,6 +31,9 @@ plot_microplate <- function(incu_tbl,
     filter(Analysis_Job == analysis_job,
            Metric == metric) %>%
     unite_("Color_Key", color, sep = "+")
+  if (log) {
+    data_tbl %>% mutate(Value=log(Value)) -> data_tbl
+  }
 
   metric_description <- unique(data_tbl$Description) %>%
     str_replace_all("\\(", "[") %>%
@@ -56,7 +61,7 @@ plot_microplate <- function(incu_tbl,
     scale_x_continuous("Time [h]", breaks = seq(0, max(data_tbl$Elapsed), 24)) +
     scale_y_continuous(metric_description) +
     theme_incu() +
-    ggtitle(paste(metric_description, analysis_job, sep = ", "))
+    ggtitle(paste(paste(plot_name, metric_description, sep=" "), analysis_job, sep = ", "))
 
   if (summarise) {
 
