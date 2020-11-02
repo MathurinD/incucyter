@@ -26,11 +26,19 @@ plot_microplate <- function(incu_tbl,
                             log=FALSE) {
 
   color_key_name <- paste(color, collapse = "+")
+  if (is.na(metric)) { # Avoid having an empy tibble because NA==NA is NA
+      metric = "default"
+      incu_tbl %>% mutate(Metric = metric)
+      warning("NA metric found, using everything")
+  }
 
   data_tbl <- incu_tbl %>%
     filter(Analysis_Job == analysis_job,
            Metric == metric) %>%
     unite_("Color_Key", color, sep = "+")
+  if (nrow(data_tbl) < 1) {
+    stop("No rows left after filtering, check that Analysis_Job and Metric arguments are not NA")
+  }
   if (log) {
     data_tbl %>% mutate(Value=log(Value)) -> data_tbl
   }
