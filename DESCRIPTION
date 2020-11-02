@@ -1,4 +1,5 @@
 Package: incucyter
+Encoding: UTF-8
 Type: Package
 Title: Analysing IncuCyte ZOOM® data in R
 Version: 0.1.0

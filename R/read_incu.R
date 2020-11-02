@@ -2,7 +2,7 @@
 #'
 #' \code{read_incu()} reads incucyte metrics. Please provide an annotation table for downstream analyses.
 #'
-#' @param file Metrics file exported with IncuCyte ZOOM® software.
+#' @param file Metrics file exported with IncuCyte ZOOM software.
 #' @param annotation Annotation file with at least four columns: Analysis_Job (e.g. "Experiment_I"), Well (e.g. "A1"), Treatment (e.g. "ctrl") and Reference (can be multiple e.g. "A1,B1"), and one row per well.
 #' @param delay Time between treatment and first image acquisition in minutes (default 0).
 #' @param per_image IncuCyte ZOOM® can export values per image or export mean values per well. Hence, set per_image = T or F depending on your export settings.
