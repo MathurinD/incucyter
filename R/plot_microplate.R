@@ -33,7 +33,7 @@ plot_microplate <- function(incu_tbl,
   }
 
   data_tbl <- incu_tbl %>%
-    filter(Analysis_Job == analysis_job,
+    dplyr::filter(Analysis_Job == analysis_job,
            Metric == metric) %>%
     unite_("Color_Key", color, sep = "+")
   if (nrow(data_tbl) < 1) {

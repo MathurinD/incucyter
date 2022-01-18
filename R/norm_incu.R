@@ -17,7 +17,7 @@ norm_incu <- function(incu_tbl, ref_time = 72) {
   ref_tbl <- incu_tbl %>%
     distinct(Analysis_Job, Metric, Reference, .keep_all = F) %>%
     apply(1, function(x) incu_tbl %>%
-            filter(Analysis_Job == x[1],
+            dplyr::filter(Analysis_Job == x[1],
                    Metric == x[2],
                    Well %in% unlist(str_split(x[3], ",")),
                    Elapsed == ref_time) %>%

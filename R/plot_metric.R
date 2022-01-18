@@ -29,7 +29,7 @@ plot_metrics <- function(incu_tbl,
 
   color_key_name <- paste(color, collapse = "+")
   data_tbl <- incu_tbl %>%
-    filter(Analysis_Job %in% analysis_job,
+    dplyr::filter(Analysis_Job %in% analysis_job,
            Metric %in% metric) %>%
     unite_("Color_Key", color, sep = "+", remove = F)
 
@@ -164,13 +164,13 @@ plot_metrics <- function(incu_tbl,
 #   ## filter Wells
 #   ## run I: get rid of edge effect
 #   ## (wells in the periphery evaporated over the course of the experiment)
-#   filter(!(Analysis_Job == "2016_03_23_HEK293RAF1ER_Casp3_panel_I" &
+#   dplyr::filter(!(Analysis_Job == "2016_03_23_HEK293RAF1ER_Casp3_panel_I" &
 #              (WellX %in% c(1, 12) | WellY %in% c("A", "H")))) %>%
 #   ## run III: C5
-#   filter(!(Analysis_Job == "2016_05_26_HEK293RAF1ER_Casp3_panel_III" &
+#   dplyr::filter(!(Analysis_Job == "2016_05_26_HEK293RAF1ER_Casp3_panel_III" &
 #              Well == "C5")) %>%
 #   ## run VI:
-#   filter(!(Analysis_Job == "2016_09_06_HEK293RAF1ER_Casp3_panel_VI" &
+#   dplyr::filter(!(Analysis_Job == "2016_09_06_HEK293RAF1ER_Casp3_panel_VI" &
 #              Well == "C7"))
 #
 # ## simplify Analysis_Job factor:
@@ -184,10 +184,10 @@ plot_metrics <- function(incu_tbl,
 # incu_tbl_norm <- norm_incu(incu_ratios, 72)
 #
 # incu_tbl_norm %>%
-#   filter(Analysis_Job %in% c("run5", "run7")) %>%
-#   #filter(siRNA %in% c("Mock", "NR4A1")) %>%
-#   filter(Metric %in% c("Green_Confluence_Phase_Confluence")) %>%
-#   filter(siRNA_id == "*") -> incu_tbl
+#   dplyr::filter(Analysis_Job %in% c("run5", "run7")) %>%
+#   #dplyr::filter(siRNA %in% c("Mock", "NR4A1")) %>%
+#   dplyr::filter(Metric %in% c("Green_Confluence_Phase_Confluence")) %>%
+#   dplyr::filter(siRNA_id == "*") -> incu_tbl
 #
 # plot_metrics(incu_tbl, summarise = T,
 #              color = c("siRNA"),
