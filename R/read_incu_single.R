@@ -4,7 +4,7 @@ read_incu_single <- function(file, delay, per_image,decimal=",") {
                      col_names = c("key", "value"), trim_ws = T, na = "") %>%
                      { setNames(.$value, .$key) } %>%
     as.list %>%
-    as_data_frame %>%
+    as_tibble %>%
     setNames(make.names(names(.)) %>% str_replace_all("\\.", "_"))
 
   result <- read_tsv(file, skip = 7, locale = locale(decimal_mark = decimal)) %>%
@@ -29,7 +29,7 @@ read_incu_single <- function(file, delay, per_image,decimal=",") {
 
   }
 
-  result <- list(result, meta) %>% unlist(recursive = F) %>% do.call(data_frame, .) %>%
+  result <- list(result, meta) %>% unlist(recursive = F) %>% do.call(tibble, .) %>%
     rename(Description = Metric) %>%
     left_join(metrics, by = "Description")
 
